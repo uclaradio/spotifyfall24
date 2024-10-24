@@ -1,20 +1,23 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fall 2024 Intern project
+This is the repo for the [UCLA Radio](https://uclaradio.com/) Fall 2024 Intern web project.
+Using Spotify API data, we will: 
 
-## Getting Started
+To get started, make sure you have git, Node.js, and npm all installed and configured.
 
-First, run the development server:
+In the desired location that you want to locally store your app, run the following in your terminal:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### `git clone https://github.com/uclaradio/spotifyfall24.git`
+
+In order to access the app make sure to 
+
+### `cd spotifyfall2024`
+
+then to run the app do
+
+### `npm run dev`
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
