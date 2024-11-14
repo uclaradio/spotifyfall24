@@ -1,36 +1,37 @@
 'use client';
 
 import React, { useState } from 'react';
-import SpotifyPage from './SpotifyPage'; // Import the SpotifyPage component
+import SpotifyPage from './SpotifyPage/page'; // Import the SpotifyPage component
+
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to handle login status
+  const path = 'https://accounts.spotify.com/authorize?client_id=03e56877186749aab242532dbd360d61&response_type=code&redirect_uri=http://localhost:3000/SpotifyPage/&scope=user-read-currently-playing+user-top-read'
 
   const handleLogin = () => {
-    // Hardcoded credentials for demo purposes
-    const correctUsername = 'user';
-    const correctPassword = '123';
+    // // Hardcoded credentials for demo purposes
+    // const correctUsername = 'user';
+    // const correctPassword = '123';
 
-    if (username === correctUsername && password === correctPassword) {
-      // Simulate successful login
-      localStorage.setItem('isLoggedIn', 'true');
-      setIsLoggedIn(true); // Set login status to true
-    } else {
-      setErrorMessage('Invalid username or password.');
-    }
+    // if (username === correctUsername && password === correctPassword) {
+    //   // Simulate successful login
+    //   localStorage.setItem('isLoggedIn', 'true');
+    //   setIsLoggedIn(true); // Set login status to true
+    // } else {
+    //   setErrorMessage('Invalid username or password.');
+    // }
+    
+    window.location.href = path;
   };
 
-  if (isLoggedIn) {
-    return <SpotifyPage />; // Render the SpotifyPage component if logged in
-  }
 
   return (
     <div style={styles.container}>
       <h1 style={styles.header}>Login to Spotify</h1>
-      <input
+      {/* <input
         type="text"
         placeholder="Username"
         value={username}
@@ -43,7 +44,7 @@ const LoginPage: React.FC = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         style={styles.inputBox}
-      />
+      /> */}
       {errorMessage && <p style={styles.error}>{errorMessage}</p>}
       <button onClick={handleLogin} style={styles.button}>
         Login
