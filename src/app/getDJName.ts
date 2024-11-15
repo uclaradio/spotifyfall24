@@ -1,10 +1,12 @@
-//import { topGenre } from "../app/spotify"; // fill in based on alex's code
+//import { topGenre } from "../app/spotify"; // fill in based on api call name 
 const topGenre = "indie"
+
 const genreDJNames: { [genre: string]: string[] } = {
     pop: ["Poptart", "Glitter", "Mood"],
     rap: ["Hustle", "Flow"],
     indie: ["Gatekeeper", "Fern", "Moon"]
 };
+
 export const getDJName = async (): Promise<string | null> => {
     if (topGenre) {
         if (genreDJNames[topGenre]) {
