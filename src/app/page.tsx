@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import SpotifyPage from './SpotifyPage/page'; // Import the SpotifyPage component
-
+import SpotifyPage from './SpotifyPage/page';
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -12,39 +11,13 @@ const LoginPage: React.FC = () => {
   const path = 'https://accounts.spotify.com/authorize?client_id=03e56877186749aab242532dbd360d61&response_type=code&redirect_uri=http://localhost:3000/SpotifyPage/&scope=user-read-currently-playing+user-top-read'
 
   const handleLogin = () => {
-    // // Hardcoded credentials for demo purposes
-    // const correctUsername = 'user';
-    // const correctPassword = '123';
-
-    // if (username === correctUsername && password === correctPassword) {
-    //   // Simulate successful login
-    //   localStorage.setItem('isLoggedIn', 'true');
-    //   setIsLoggedIn(true); // Set login status to true
-    // } else {
-    //   setErrorMessage('Invalid username or password.');
-    // }
-    
     window.location.href = path;
   };
 
-
   return (
     <div style={styles.container}>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify Logo" style={styles.logo} />
       <h1 style={styles.header}>Login to Spotify</h1>
-      {/* <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        style={styles.inputBox}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        style={styles.inputBox}
-      /> */}
       {errorMessage && <p style={styles.error}>{errorMessage}</p>}
       <button onClick={handleLogin} style={styles.button}>
         Login
@@ -63,34 +36,39 @@ const styles = {
     backgroundColor: '#1DB954',
     color: 'white',
     fontFamily: '"Helvetica Neue", "Arial", sans-serif',
+    textAlign: 'center',
+  },
+  logo: {
+    width: '50px',
+    marginBottom: '20px',
+    filter: 'brightness(0) invert(0)',
   },
   header: {
-    fontSize: '2rem',
+    fontSize: '2.5rem',
     fontWeight: 'bold',
     marginBottom: '20px',
-  },
-  inputBox: {
-    padding: '10px',
-    fontSize: '1rem',
-    marginBottom: '20px',
-    width: '300px',
-    borderRadius: '5px',
-    border: '2px solid black',
-    backgroundColor: 'white',
     color: 'black',
   },
   button: {
-    padding: '10px 20px',
-    fontSize: '1rem',
+    padding: '15px 30px',
+    fontSize: '1.1rem',
     cursor: 'pointer',
     backgroundColor: '#000',
     color: '#fff',
     border: 'none',
-    borderRadius: '5px',
+    borderRadius: '30px',
+    transition: 'background-color 0.3s ease, transform 0.2s ease',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+    fontFamily: '"Helvetica Neue", "Arial", sans-serif',
+  },
+  buttonHover: {
+    backgroundColor: '#333',
+    transform: 'scale(1.05)',
   },
   error: {
     color: 'red',
-    marginBottom: '10px',
+    marginTop: '10px',
+    fontSize: '0.9rem',
   },
 };
 
