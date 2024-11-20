@@ -149,6 +149,7 @@ export const getAccessToken = async (): Promise<SpotifyTokenResponse> => {
       grant_type: 'refresh_token',
       refresh_token,
     }),
+    scope: "user-top-read",
   });
 
   if (!response.ok) {
@@ -164,12 +165,14 @@ export const getTopGenres = async (access_token: string): Promise<Record<string,
   console.log('Access Token:', access_token); // Log for debugging
 
   const tracksResponse = await fetch('https://api.spotify.com/v1/me/top/tracks', {
+    method: "GET",
     headers: {
       Authorization: `Bearer ${access_token}`,
     },
   });
 
   if (!tracksResponse.ok) {
+    console.log(tracksResponse)
     throw new Error(`Failed to fetch top tracks: ${tracksResponse.statusText}`);
   }
 

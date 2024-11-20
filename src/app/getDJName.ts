@@ -1,8 +1,9 @@
-import { getAccessToken } from "./spotify";
-import { getTopGenres } from "./spotify"; 
-const accessToken = await getAccessToken();
+// import { getAccessToken } from "./spotify";
+// import { getTopGenres } from "./spotify"; 
+// const accessToken = await getAccessToken();
 
-const topGenres = await getTopGenres(accessToken.access_token);
+// const topGenres = await getTopGenres(accessToken.access_token);
+import { useState } from "react";
 
 const genreDJNames: { [genre: string]: string[] } = {
     pop: ["Poptart", "Glitter", "Mood"],
@@ -33,32 +34,53 @@ const genreDJNames: { [genre: string]: string[] } = {
     "neo mellow": ["Smooth", "Groove", "Chillax"],
     "punk": ["Rebel", "Anarchy", "Rocker"],
     "gospel": ["Soulful", "Praise", "Faithful"],
-    "afrobeat": ["Rhythm", "Vibe", "Fusion"]
+    "afrobeat": ["Rhythm", "Vibe", "Fusion"],
+
 };
 
-export const getDJName = async (): Promise<string | null> => {
-    if (topGenres.length > 0) {
-        let foundDJName = false;
-        let index = 0;
 
-        while (index < topGenres.length) {
-            const topGenre = topGenres[index];
-            if (genreDJNames[topGenre]) {
-                const randomIndex = Math.floor(Math.random() * genreDJNames[topGenre].length);
-                const name = "DJ " + genreDJNames[topGenre][randomIndex];
-                foundDJName = true;
-                return name;
-            }
-            index++;
+export const getDJName = (topGenres: Record<string, number>, dj: string) => {
+
+    let name = "DJ " + dj + " ";
+
+    if (Object.keys(topGenres).length > 0) {
+        let foundDJName = false;
+    
+        Object.entries(topGenres).forEach(([key, value]) => {
+          if (genreDJNames[key]) {
+            const randomIndex = Math.floor(Math.random() * genreDJNames[key].length);
+            name = name + " " + genreDJNames[key][randomIndex];
+            foundDJName = true;
+          }
+        });
+        if (foundDJName)
+        {
+            return name;
         }
+
+
+        // while (index < Object.keys(topGenres).length) {
+        //     const topGenre = topGenres[index];
+        //     console.log(topGenres[index])
+        //     if (genreDJNames[topGenre]) {
+        //         const randomIndex = Math.floor(Math.random() * genreDJNames[topGenre].length);
+        //         console.log(randomIndex)
+        //         const name = "DJ " + genreDJNames[topGenre][randomIndex];
+        //         foundDJName = true;
+        //         return name;
+        //     }
+        //     index++;
+        // }
 
         if (!foundDJName) {
             console.log("genre not in list");
-            return "DJ Obscure";
+            return "DJ Obscure not in list";
         }
     } else {
         console.log("API call failed");
-        return "DJ Obscure";
+        return "DJ Obscure api failed";
     }
-    return null;
+    return "";
 };
+
+export default getDJName;

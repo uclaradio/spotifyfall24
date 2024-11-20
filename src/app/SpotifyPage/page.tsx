@@ -75,12 +75,20 @@
 
 import React, { useEffect, useState } from 'react';
 import { getTopGenres } from '../spotify'; // Adjust the path if necessary
+import getDJName from '../getDJName';
+
+
+
+
+
 
 const SpotifyPage: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [genres, setGenres] = useState<Record<string, number> | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [name, set_name] = useState<string>("");
+  const [generated, setGenerated] = useState(false);
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -122,8 +130,11 @@ const SpotifyPage: React.FC = () => {
   };
 
   const handleClick = () => {
-    alert(`You typed: ${inputValue}`);
+    set_name(getDJName(genres,inputValue))
+    setGenerated(true)
   };
+
+
 
   return (
     <div style={styles.container}>
@@ -147,10 +158,12 @@ const SpotifyPage: React.FC = () => {
               <li key={genre} style={styles.genreItem}>
                 {genre}: {count}
               </li>
+              
             ))}
           </ul>
         </div>
       )}
+      {generated && <p>{name}</p>}
       {error && <p style={styles.errorText}>Error: {error}</p>}
     </div>
   );
