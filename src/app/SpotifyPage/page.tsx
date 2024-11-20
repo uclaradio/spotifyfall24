@@ -139,6 +139,11 @@ const SpotifyPage: React.FC = () => {
   return (
     <div style={styles.container}>
       <h1 style={styles.header}>DJenerator</h1>
+      {generated && (
+        <div style={styles.generatedNameContainer}>
+        <p style={styles.generatedName}>{name}</p>
+      </div>
+      )}
       <input
         type="text"
         value={inputValue}
@@ -163,7 +168,8 @@ const SpotifyPage: React.FC = () => {
           </ul>
         </div>
       )}
-      {generated && <p>{name}</p>}
+      {/* {generated && <p>{name}</p>} */}
+      
       {error && <p style={styles.errorText}>Error: {error}</p>}
     </div>
   );
@@ -186,6 +192,21 @@ const styles = {
     fontWeight: '900',
     marginBottom: '20px',
     color: 'black',
+  },
+  generatedNameContainer: {
+    marginBottom: '10px', // Space between name and input box
+  },
+  generatedName: {
+    fontSize: '2.5rem',
+    fontWeight: 'bold',
+    color: 'white',
+    textShadow: `
+      -1px -1px 0 #000, /* Top-left shadow */
+      1px -1px 0 #000,  /* Top-right shadow */
+      -1px 1px 0 #000,  /* Bottom-left shadow */
+      1px 1px 0 #000    /* Bottom-right shadow */
+    `,
+    animation: 'fadeIn 0.8s ease-in-out',
   },
   inputBox: {
     padding: '10px',
@@ -244,6 +265,7 @@ const styles = {
     fontSize: '0.8rem',
     marginTop: '10px',
   },
+  
 };
 
 export default SpotifyPage;
